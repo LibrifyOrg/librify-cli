@@ -1,0 +1,22 @@
+{
+  "name": "librify-cli",
+  "version": "0.0.1",
+  "description": "The cli tool for creating librimods, available through NPM",
+  "bin": {
+    "librimod": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LibrifyOrg/librify-cli.git"
+  },
+  "keywords": [
+    "librify",
+    "librimod"
+  ],
+  "author": "LibrifyOrg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LibrifyOrg/librify-cli/issues"
+  },
+  "homepage": "https://github.com/LibrifyOrg/librify-cli#readme"
+}

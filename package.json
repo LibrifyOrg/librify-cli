@@ -18,5 +18,13 @@
   "bugs": {
     "url": "https://github.com/LibrifyOrg/librify-cli/issues"
   },
-  "homepage": "https://github.com/LibrifyOrg/librify-cli#readme"
+  "homepage": "https://github.com/LibrifyOrg/librify-cli#readme",
+  "dependencies": {
+    "inquirer": "^7.0.0",
+    "mustache": "^3.1.0",
+    "ncp": "^2.0.0",
+    "rimraf": "^3.0.0",
+    "semver": "^6.3.0",
+    "tar": "^4.4.11"
+  }
 }

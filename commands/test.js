@@ -26,7 +26,7 @@ module.exports = function(args) {
 		return console.error("ERR: The librimod config wasn't found in librimod.json or package.json");
 	}
 
-	let testFolder = config.testFolder;
+	let testFolder = args[0] || config.testFolder;
 
 	if(!testFolder) {
 		return console.error("ERR: No folder for the test installation has been provided in the config");

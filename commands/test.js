@@ -2,6 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const rimraf = require("rimraf");
 const cp = require("child_process");
+const util = require("util");
 const ncp = require("ncp").ncp;
 
 module.exports = function(args) {
@@ -44,22 +45,22 @@ module.exports = function(args) {
 		fs.mkdirSync(pluginFolder);
 	}
 
-	rimraf(pluginFolder, err => {
-		if(err) console.error(`ERR: There was an error while cleaning (${err.message})`);
-
+	util.promisify(rimraf)(pluginFolder)
+	.then(() => {
 		if(config.dist) {
 			console.log(`Copying the dist folder to ${pluginFolder}`);
-	
-			ncp(path.join(process.cwd(), config.dist), pluginFolder, err => {
-				if(err) console.error(`ERR: There was an error while copying (${err.message})`);
-			});
+
+			return util.promisify(ncp)(path.join(process.cwd(), config.dist), pluginFolder);
 		}
 		else {
 			console.log(`Copying the project folder to ${pluginFolder}`);
-	
-			ncp(process.cwd(), pluginFolder, err => {
-				if(err) console.error(`ERR: There was an error while copying (${err.message})`);
-			});
+
+			return util.promisify(ncp)(process.cwd(), pluginFolder);
 		}
-	});
+	}, err => console.error(`ERR: There was an error while cleaning (${err.message})`))
+	.then(() => {
+		console.log(`Starting the librify installation`);
+
+		cp.spawn(/^win/.test(process.platform) ? "npm.cmd" : "npm", ["run", "dev"], {cwd: testFolder}).stdout.on("data", data => process.stdout.write(data));
+	}, err => console.error(`ERR: There was an error while copying (${err.message})`));
 }

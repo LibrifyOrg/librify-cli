@@ -57,10 +57,10 @@ module.exports = function(args) {
 
 			return util.promisify(ncp)(process.cwd(), pluginFolder);
 		}
-	}, err => console.error(`ERR: There was an error while cleaning (${err.message})`))
-	.then(() => {
+	}, err => console.error(`ERR: There was an error while cleaning (${err.message})`));
+	/*.then(() => {
 		console.log(`Starting the librify installation`);
 
 		cp.spawn(/^win/.test(process.platform) ? "npm.cmd" : "npm", ["run", "dev"], {cwd: testFolder}).stdout.on("data", data => process.stdout.write(data));
-	}, err => console.error(`ERR: There was an error while copying (${err.message})`));
+	}, err => console.error(`ERR: There was an error while copying (${err.message})`));*/
 }
